@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cyclops Space — Founders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="page.css" />
+<style>
+  /* ----- founders-specific ----- */
+  .fheader { padding-top: 160px; padding-bottom: clamp(40px, 7vh, 80px); }
+  .founders-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+  .founder {
+    display: grid; grid-template-columns: 260px 1fr; gap: clamp(28px, 5vw, 64px);
+    padding: clamp(36px, 6vh, 64px) 0; border-bottom: 1px solid var(--line); align-items: start;
+  }
+  @media (max-width: 760px){ .founder { grid-template-columns: 1fr; gap: 24px; } }
+  /* portrait placeholder — striped, with mono caption */
+  .portrait {
+    aspect-ratio: 4 / 5; border: 1px solid var(--line-2); border-radius: 4px; position: relative; overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 10px, transparent 10px 20px),
+      linear-gradient(180deg, var(--panel-2), var(--bg-2));
+    display: grid; place-items: center;
+  }
+  .portrait .ph { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--faint); text-transform: uppercase; text-align: center; padding: 0 16px; }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(.15) contrast(1.02); }
+  .portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(5,6,9,.55) 100%); pointer-events: none; }
+  .portrait .initials { position: absolute; bottom: 14px; left: 16px; z-index: 2; font-family: var(--mono); font-size: 13px; letter-spacing: .14em; color: var(--laser); }
+  .founder .bio h2 { font-size: clamp(28px, 3.4vw, 40px); }
+  .founder .role { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--laser); margin: 12px 0 22px; display: block; }
+  .founder .bio p { color: var(--ink-2); font-size: 16.5px; line-height: 1.65; max-width: 58ch; margin: 0 0 16px; }
+  .founder .links { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .founder .links a {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--ink-2);
+    border: 1px solid var(--line-2); border-radius: 2px; padding: 8px 14px; transition: border-color .2s, color .2s;
+  }
+  .founder .links a:hover { border-color: var(--laser); color: var(--laser); }
+  .editnote { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: .04em; border: 1px dashed var(--line-2); border-radius: 3px; padding: 12px 16px; margin-bottom: 36px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav is-stuck" id="nav">
+  <a class="brand" href="index.html#top">
+    <span class="eye" aria-hidden="true"></span> Cyclops&nbsp;Space
+  </a>
+  <div class="nav-links">
+    <a href="index.html#weather" class="nav-hide">Demonstration</a>
+    <a href="index.html#how" class="nav-hide">How it works</a>
+    <a href="founders.html" style="color:var(--laser)">Founders</a>
+    <a href="index.html#contact" class="btn btn--ghost" style="padding:9px 16px;">Talk to us</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="wrap fheader">
+  <p class="eyebrow reveal">The team</p>
+  <h1 class="h-display reveal" style="font-size:clamp(40px,7vw,84px);">Founders.</h1>
+  <p class="lead reveal" style="margin-top:24px;">Three people building the data link between space and Earth. The physics is unforgiving — so is the team.</p>
+</header>
+
+<!-- FOUNDERS -->
+<main class="wrap section--tight" style="padding-top:0;">
+  <p class="editnote reveal">↻ This page updates independently from the landing page.</p>
+
+  <div class="founders-list">
+
+    <!-- FOUNDER 1 — Kaushik -->
+    <article class="founder reveal">
+      <div class="portrait"><img src="founders/kaushik.png" alt="Kaushik Telidevara" /><span class="initials">K</span></div>
+      <div class="bio">
+        <h2>Kaushik Telidevara</h2>
+        <span class="role">Co-founder · Mechanical &amp; Thermal</span>
+        <p>Kaushik leads the physical design of the Cyclops relay — the structures, materials and thermal systems that have to survive the stratosphere. He cut his teeth on Singapore's <b>Galassia-5</b> satellite, working on flight hardware built for orbit.</p>
+        <p>A mechanical and thermal engineer by training, he turns the harsh physics of high altitude into a buildable spec. He studies at <b>Stanford</b> and serves as an officer in the Singapore Armed Forces.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/kaushik-telidevara/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+      </div>
+    </article>
+
+    <!-- FOUNDER 2 — Adhi -->
+    <article class="founder reveal">
+      <div class="portrait"><img src="founders/adhi.png" alt="Adhi" /><span class="initials">A</span></div>
+      <div class="bio">
+        <h2>Adhi</h2>
+        <span class="role">Co-founder · Software &amp; AI</span>
+        <p>Adhi owns the software stack — the pointing, tracking and link-management intelligence that keeps a laser locked onto a satellite from the edge of space. A proficient <b>AI engineer</b>, he's building the onboard systems that make the relay autonomous.</p>
+        <p>He turns Cyclops' optical-link problem into code and models. Like Kaushik, he studies at <b>Stanford</b> and serves as an officer in the Singapore Armed Forces.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/adhikrish/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+      </div>
+    </article>
+
+    <!-- FOUNDER 3 — Raj -->
+    <article class="founder reveal">
+      <div class="portrait"><img src="founders/raj.png" alt="Rajvrat Thapliyal" /><span class="initials">R</span></div>
+      <div class="bio">
+        <h2>Rajvrat Thapliyal</h2>
+        <span class="role">Co-founder &amp; CEO</span>
+        <p>Raj runs Cyclops as CEO — a <b>two-time founder</b> with a deep network across the space community. He's taken ventures through <b>NVIDIA Inception</b> and Singapore's <b>BLOCK71</b> incubator, and drives the commercial and fundraising engine behind the team.</p>
+        <p>He studied at the <b>National University of Singapore</b> and served as a special-operations operator with demolitions and reconnaissance experience — at home where the stakes and the unknowns run highest.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/rajvrat-thapliyal/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+      </div>
+    </article>
+
+  </div>
+
+  <div style="padding:clamp(48px,8vh,90px) 0; text-align:center;">
+    <a href="index.html#top" class="btn btn--ghost">← Back to Cyclops Space</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="index.html#top" style="margin-bottom:16px;">
+        <span class="eye" aria-hidden="true"></span> Cyclops&nbsp;Space
+      </a>
+      <small>Optical relays above the weather.<br />© 2026 Cyclops Space. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((ents) => {
+    ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
