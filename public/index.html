@@ -337,7 +337,7 @@
           <div class="wx-readout"><span class="wx-state">OFFLINE</span><div class="wx-num"><span class="wx-gbps">0</span> <span class="wx-u">Gbps</span></div><div class="wx-bar"><i></i></div></div>
         </div>
         <div class="wx-col" data-mode="relay">
-          <div class="wx-lab">Cyclops Relay</div>
+          <div class="wx-lab">Cyclops relay</div>
           <canvas class="wx-canvas" data-mode="relay"></canvas>
           <div class="wx-readout"><span class="wx-state">ONLINE</span><div class="wx-num"><span class="wx-gbps">0</span> <span class="wx-u">Gbps</span></div><div class="wx-bar"><i></i></div></div>
         </div>
@@ -359,7 +359,7 @@
         </div>
         <div class="lat-lane" data-lane="cyclops">
           <canvas class="lat-canvas" data-lane="cyclops"></canvas>
-          <div class="lat-info"><span class="lat-tag">Cyclops relay, overhead</span><span class="lat-big lat-good">+<b data-count="7">0</b> ms</span></div>
+          <div class="lat-info"><span class="lat-tag">Cyclops relay</span><span class="lat-big lat-good">+<b data-count="7">0</b> ms</span></div>
         </div>
       </div>
     </div>
@@ -481,7 +481,7 @@ document.querySelectorAll('.beat').forEach(function(b){io.observe(b);});
     function tether(x1,y1,x2,y2){ctx.save();ctx.strokeStyle="rgba(140,146,153,.45)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();if(!reduce)for(var k=0;k<4;k++){var p=((t*0.012+k/4)%1);ctx.fillStyle="rgba(224,48,40,.8)";ctx.beginPath();ctx.arc(x1,y1+(y2-y1)*p,1.5,0,7);ctx.fill();}ctx.restore();}
     function clouds(y){if(cloudAmt<0.02)return;ctx.save();ctx.globalAlpha=cloudAmt;var drift=reduce?0:t*0.12;for(var i=0;i<6;i++){var X=((i*130+drift)%(W+220))-110,Y=y+Math.sin(i*1.6)*9,r=58+(i%3)*22,g=ctx.createRadialGradient(X,Y,0,X,Y,r);g.addColorStop(0,"rgba(128,136,148,.6)");g.addColorStop(1,"rgba(128,136,148,0)");ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(X,Y,r,r*0.52,0,0,7);ctx.fill();}ctx.restore();}
     function rain(y){ctx.save();ctx.globalAlpha=rainAmt;ctx.strokeStyle="rgba(150,156,166,.4)";ctx.lineWidth=1;for(var i=0;i<drops.length;i++){var d=drops[i];if(d.y<y)d.y=y;ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(d.x-2,d.y+d.l);ctx.stroke();if(!reduce){d.y+=d.v;if(d.y>H){d.y=y+Math.random()*20;d.x=Math.random()*W;}}}ctx.restore();}
-    function balloon(x,y){var bob=reduce?0:Math.sin(t*0.04)*3;y+=bob;ctx.save();var h0=ctx.createRadialGradient(x,y,0,x,y,34);h0.addColorStop(0,"rgba(224,48,40,.16)");h0.addColorStop(1,"rgba(224,48,40,0)");ctx.fillStyle=h0;ctx.beginPath();ctx.arc(x,y,34,0,7);ctx.fill();var g=ctx.createRadialGradient(x-3,y-5,2,x,y,17);g.addColorStop(0,"#e9edf4");g.addColorStop(1,"#aeb7c6");ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y-3,13,16,0,0,7);ctx.fill();ctx.fillStyle="#11161f";ctx.fillRect(x-5,y+11,10,6);ctx.fillStyle="#e03028";ctx.beginPath();ctx.arc(x,y+14,1.4,0,7);ctx.fill();ctx.restore();}
+    function balloon(x,y){var bob=reduce?0:Math.sin(t*0.04)*3;y+=bob;ctx.save();var h0=ctx.createRadialGradient(x,y,0,x,y,34);h0.addColorStop(0,"rgba(224,48,40,.16)");h0.addColorStop(1,"rgba(224,48,40,0)");ctx.fillStyle=h0;ctx.beginPath();ctx.arc(x,y,34,0,7);ctx.fill();var g=ctx.createRadialGradient(x-3,y-5,2,x,y,17);g.addColorStop(0,"#e9edf4");g.addColorStop(1,"#aeb7c6");ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y-3,13,16,0,0,7);ctx.fill();ctx.fillStyle="#11161f";ctx.fillRect(x-5,y+11,10,6);ctx.fillStyle="#e03028";ctx.beginPath();ctx.arc(x,y+14,1.4,0,7);ctx.fill();ctx.restore();ctx.save();ctx.font="600 11px 'Chakra Petch', sans-serif";ctx.textAlign="left";ctx.fillStyle="#e6584e";ctx.shadowColor="rgba(224,48,40,.85)";ctx.shadowBlur=12;var lw=ctx.measureText("CYCLOPS RELAY").width;ctx.fillText("CYCLOPS RELAY",Math.min(x+24,W-lw-4),y+4);ctx.restore();}
     function sat(x,y){var dx=reduce?0:Math.sin(t*0.012)*5;x+=dx;ctx.save();ctx.translate(x,y);ctx.rotate(-0.16);ctx.fillStyle="#1a2230";ctx.strokeStyle="rgba(130,138,150,.5)";ctx.lineWidth=1;ctx.fillRect(-34,-5,22,11);ctx.strokeRect(-34,-5,22,11);ctx.fillRect(12,-5,22,11);ctx.strokeRect(12,-5,22,11);ctx.fillStyle="#dfe2e6";ctx.fillRect(-10,-8,20,16);ctx.fillStyle="#0c1017";ctx.fillRect(-6,-4,12,10);ctx.shadowColor="rgba(224,48,40,.9)";ctx.shadowBlur=10;ctx.fillStyle="#e03028";ctx.beginPath();ctx.arc(0,7,2.2,0,7);ctx.fill();ctx.restore();ctx.save();ctx.font="600 9.5px 'Chakra Petch', sans-serif";ctx.fillStyle="#9aa0a8";ctx.textAlign="center";var shw=ctx.measureText("ORBITAL DATA CENTRE").width/2;ctx.fillText("ORBITAL DATA CENTRE",Math.max(shw+4,Math.min(W-shw-4,x)),y-16);ctx.restore();}
     function ground(x,y){ctx.save();ctx.translate(x,y);ctx.fillStyle="rgba(140,146,153,.6)";ctx.beginPath();ctx.moveTo(-11,0);ctx.lineTo(11,0);ctx.lineTo(6,-12);ctx.lineTo(-6,-12);ctx.closePath();ctx.fill();ctx.fillStyle="#0c1017";ctx.fillRect(-4,-17,8,6);ctx.restore();}
     window.addEventListener("resize",resize);resize();requestAnimationFrame(tick);
@@ -512,7 +512,7 @@ document.querySelectorAll('.beat').forEach(function(b){io.observe(b);});
         beam(g.far,g.user,"rgba(120,126,134,.55)",null,[3,7]);midLabel(g.far,g.user,"1,900 km backhaul","#7a8088",g.horizon+26);
         packet([g.sat,g.far,g.user],pkt,"#9aa0a8");}
       else{cloud(g.user.x,g.user.y-H*0.26);beam(g.user,g.relay,"rgba(140,146,153,.5)",null);beam(g.relay,g.sat,"#e03028","rgba(224,48,40,.6)");balloon(g.relay);
-        label(g.relay,"CYCLOPS RELAY","#e6584e",-26);
+        label({x:g.relay.x,y:g.relay.y+(reduce?0:Math.sin(t*0.04)*3)},"CYCLOPS RELAY","#e6584e",-26,true);
         packet([g.user,g.relay,g.sat,g.relay,g.user],pkt,"#e03028");}
       node(g.user,7,"#fff");ctx.strokeStyle="rgba(255,255,255,.35)";ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(g.user.x,g.user.y,13,0,7);ctx.stroke();
       if(!reduce){var pr=13+((t*0.7)%22);ctx.globalAlpha=Math.max(0,1-(pr-13)/22);ctx.beginPath();ctx.arc(g.user.x,g.user.y,pr,0,7);ctx.stroke();ctx.globalAlpha=1;}
@@ -520,7 +520,7 @@ document.querySelectorAll('.beat').forEach(function(b){io.observe(b);});
     function beam(a,b,col,glow,dash){ctx.save();ctx.strokeStyle=col;ctx.lineWidth=dash?1.6:2.6;if(dash)ctx.setLineDash(dash);if(glow){ctx.shadowColor=glow;ctx.shadowBlur=12;}ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore();}
     function node(p,r,fill){ctx.save();ctx.fillStyle=fill;ctx.beginPath();ctx.arc(p.x,p.y,r,0,7);ctx.fill();ctx.restore();}
     function cross(p){ctx.save();ctx.strokeStyle="#8a9099";ctx.lineWidth=2;var s=6;ctx.beginPath();ctx.moveTo(p.x-s,p.y-s);ctx.lineTo(p.x+s,p.y+s);ctx.moveTo(p.x+s,p.y-s);ctx.lineTo(p.x-s,p.y+s);ctx.stroke();ctx.restore();}
-    function label(p,txt,col,dy){ctx.save();ctx.font="600 11px 'Chakra Petch', sans-serif";ctx.fillStyle=col;ctx.textAlign="center";var hw=ctx.measureText(txt).width/2;ctx.fillText(txt,Math.max(hw+4,Math.min(W-hw-4,p.x)),p.y+(dy||-16));ctx.restore();}
+    function label(p,txt,col,dy,glow){ctx.save();ctx.font="600 11px 'Chakra Petch', sans-serif";ctx.fillStyle=col;ctx.textAlign="center";if(glow){ctx.shadowColor="rgba(224,48,40,.85)";ctx.shadowBlur=12;}var hw=ctx.measureText(txt).width/2;ctx.fillText(txt,Math.max(hw+4,Math.min(W-hw-4,p.x)),p.y+(dy||-16));ctx.restore();}
     function midLabel(a,b,txt,col,y,center){ctx.save();ctx.font="500 10px 'Chakra Petch', sans-serif";ctx.fillStyle=col;ctx.textAlign="center";var mx=center?a.x:(a.x+b.x)/2;ctx.fillText(txt,mx,y);ctx.restore();}
     function sat(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(-0.15);ctx.fillStyle="#1a2230";ctx.strokeStyle="rgba(130,138,150,.5)";ctx.lineWidth=1;ctx.fillRect(-34,-6,20,12);ctx.strokeRect(-34,-6,20,12);ctx.fillRect(14,-6,20,12);ctx.strokeRect(14,-6,20,12);ctx.fillStyle="#dfe2e6";ctx.fillRect(-10,-8,20,16);ctx.fillStyle="#0c1017";ctx.fillRect(-6,-5,12,10);ctx.shadowColor="rgba(224,48,40,.9)";ctx.shadowBlur=10;ctx.fillStyle="#e03028";ctx.beginPath();ctx.arc(0,7,2.4,0,7);ctx.fill();ctx.restore();ctx.save();ctx.font="600 11px 'Chakra Petch', sans-serif";ctx.fillStyle="#9aa0a8";ctx.textAlign="center";var shw=ctx.measureText("ORBITAL DATA CENTRE").width/2;ctx.fillText("ORBITAL DATA CENTRE",Math.max(shw+4,Math.min(W-shw-4,p.x)),p.y-18);ctx.restore();}
     function cloud(x,y){ctx.save();for(var i=0;i<5;i++){var cx=x+i*26-52,cy=y+Math.sin(i)*6,r=38,gg=ctx.createRadialGradient(cx,cy,0,cx,cy,r);gg.addColorStop(0,"rgba(128,136,148,.7)");gg.addColorStop(1,"rgba(128,136,148,0)");ctx.fillStyle=gg;ctx.beginPath();ctx.ellipse(cx,cy,r,r*0.55,0,0,7);ctx.fill();}ctx.restore();}
