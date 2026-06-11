@@ -34,6 +34,9 @@ html = html.replace('<section class="beat flip" id="s2">', '<section class="beat
 html = html.replace('<p class="p">Optical solves bandwidth and inherits weather. A single cloud layer between the telescope and the sky takes the link to zero, and no amount of engineering on the ground changes that. Availability becomes a property of the local climate.</p>',
     '<p class="p">Optical fixes the bandwidth, then trades it for a new problem: a laser dies in cloud. On the ground, the link is only as reliable as the weather.</p>', 1)
 
+# favicon: bare helmet, transparent background
+html = re.sub(r'(<link rel="icon" type="image/png" href=")data:image/png;base64,[^"]+', r'\g<1>img/favicon.png', html, count=1)
+
 # 00: fewer words
 html = html.replace('<h2 class="h1">Above the cloud line, the sky is always clear.</h2>',
     '<h2 class="h1">Above the cloud line, always clear.</h2>', 1)
