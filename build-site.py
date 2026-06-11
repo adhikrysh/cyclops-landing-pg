@@ -34,6 +34,12 @@ html = html.replace('<section class="beat flip" id="s2">', '<section class="beat
 html = html.replace('<p class="p">Optical solves bandwidth and inherits weather. A single cloud layer between the telescope and the sky takes the link to zero, and no amount of engineering on the ground changes that. Availability becomes a property of the local climate.</p>',
     '<p class="p">Optical fixes the bandwidth, then trades it for a new problem: a laser dies in cloud. On the ground, the link is only as reliable as the weather.</p>', 1)
 
+# 00: fewer words
+html = html.replace('<h2 class="h1">Above the cloud line, the sky is always clear.</h2>',
+    '<h2 class="h1">Above the cloud line, always clear.</h2>', 1)
+html = html.replace('<p class="p">Cyclops parks the receive telescope at 20&nbsp;km on a tethered platform, above the weather entirely. The beam from orbit lands in clear sky every hour of the year, and the tether brings it the rest of the way down. The forecast stops mattering.</p>',
+    '<p class="p">Cyclops holds the receive telescope at 20&nbsp;km, above the weather entirely. The beam from orbit lands in clear sky and rides the tether down. The forecast stops mattering.</p>', 1)
+
 # 02/03 headlines: question form tying back to 00
 html = html.replace('<h2 class="h1">Lasers die in cloud.</h2>',
     '<h2 class="h1">Why not lasers?</h2>', 1)
