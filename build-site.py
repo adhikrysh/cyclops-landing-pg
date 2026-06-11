@@ -36,11 +36,11 @@ html = html.replace('<p class="p">Optical solves bandwidth and inherits weather.
 
 # 02/03 headlines: question form tying back to 00
 html = html.replace('<h2 class="h1">Lasers die in cloud.</h2>',
-    '<h2 class="h1">Why not more lasers on the ground?</h2>', 1)
+    '<h2 class="h1">Why not lasers?</h2>', 1)
 html = html.replace('<h2 class="h1">More ground stations don&rsquo;t fix it.</h2>',
-    '<h2 class="h1">Why not more optical ground stations?</h2>', 1)
+    '<h2 class="h1">Why not site diversity?</h2>', 1)
 html = html.replace('<p class="p">Weather is regional, so spare sites have to be far apart. When a front parks over one station, traffic reroutes 1,900&nbsp;km to a clear one and picks up over 50&nbsp;ms of backhaul. Inference traffic can&rsquo;t ride that.</p>',
-    '<p class="p">Site diversity is the most popular fix: scatter optical ground stations and route around the weather. But a front darkens a whole region at once, and rerouting to a clear station adds 50+&nbsp;ms. Inference at scale can&rsquo;t be solved with site diversity.</p>', 1)
+    '<p class="p">The popular fix: scatter optical ground stations and route around the weather. But a front darkens a whole region at once, and rerouting adds 50+&nbsp;ms. Too slow for inference at scale.</p>', 1)
 
 # radio: new tagline, original description restored
 html = html.replace('''<h2 class="h1">Radio can&rsquo;t carry it.</h2>
@@ -67,7 +67,7 @@ panel('<section class="beat" id="s2">', 'storm-front.jpg', '50% 42%;filter:satur
       'as reliable as the weather.</p>',
       'A storm front along the Persian Gulf &middot; NASA')
 panel('<section class="beat" id="s3">', 'farm-coast.jpg', '46% 38%;filter:saturate(.78) contrast(.86) sepia(.12) brightness(.72)',
-      'be solved with site diversity.</p>',
+      'Too slow for inference at scale.</p>',
       'Farmland meeting the coast, from the ISS &middot; NASA')
 panel('<section class="sys" id="s4">', 'shuttle-clouds.jpg', '38% 42%',
       'The forecast stops mattering.</p>',
@@ -165,7 +165,7 @@ html = html.replace('sat:{x:W*0.5,y:H*0.18}', 'sat:{x:W*0.5,y:H*0.24}', 1)
 html = html.replace('sat:{x:W*0.84,y:H*0.2}', 'sat:{x:W*0.84,y:H*0.26}', 1)
 
 # replay the zoom-out when 00 enters the viewport
-html = html.replace('</body>', '<script>(function(){if(matchMedia("(max-width:880px)").matches||matchMedia("(pointer:coarse)").matches)return;var SEC=["#top","#s4","#s1","#s2","#s3",".pfoot"].map(function(q){return document.querySelector(q);}).filter(Boolean);var idle=null,anim=0,animating=false;function contactOpen(){var c=document.getElementById("contact");return c&&!c.hidden;}function check(){if(animating||contactOpen())return;var y=window.scrollY,max=document.documentElement.scrollHeight-window.innerHeight;var best=null,bd=1e9;SEC.forEach(function(el){var top=Math.min(el.getBoundingClientRect().top+y,max);var d=Math.abs(top-y);if(d<bd){bd=d;best=top;}});if(best===null||bd<2)return;if(bd>window.innerHeight*0.3)return;animating=true;var id=++anim,from=y,to=best,t0=performance.now(),dur=Math.max(180,Math.min(450,bd*0.55));(function step(t){if(id!==anim){animating=false;return;}var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);window.scrollTo(0,from+(to-from)*e);if(p<1)requestAnimationFrame(step);else animating=false;})(t0);}function poke(){anim++;animating=false;clearTimeout(idle);idle=setTimeout(check,120);}["wheel","touchmove","keydown"].forEach(function(ev){window.addEventListener(ev,poke,{passive:true});});window.addEventListener("scroll",function(){if(!animating){clearTimeout(idle);idle=setTimeout(check,120);}},{passive:true});})();</script><script>(function(){var s4=document.getElementById("s4");if(!s4)return;function cnt(){s4.querySelectorAll(".spec-num [data-count]").forEach(function(el){var t=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=performance.now(),dur=1400;(function step(n){var p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=(t*e).toFixed(dec);if(p<1)requestAnimationFrame(step);})(performance.now());});}new IntersectionObserver(function(es,io){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=0.35){s4.classList.add("in-view");io.disconnect();}});},{threshold:[0.35]}).observe(s4);var sp=s4.querySelector(".specs");if(sp){new IntersectionObserver(function(es,io){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=0.4){cnt();io.disconnect();}});},{threshold:[0.4]}).observe(sp);}})();</script>\n</body>', 1)
+html = html.replace('</body>', '<script>(function(){if(matchMedia("(max-width:880px)").matches||matchMedia("(pointer:coarse)").matches)return;var SEC=["#top","#s4","#s1","#s2","#s3",".pfoot"].map(function(q){return document.querySelector(q);}).filter(Boolean);function contactOpen(){var c=document.getElementById("contact");return c&&!c.hidden;}function tops(){var max=document.documentElement.scrollHeight-window.innerHeight;return SEC.map(function(el){return Math.min(el.getBoundingClientRect().top+window.scrollY,max);});}var target=-1,animId=0,animating=false,lastT=0,accum=0,consumed=false;function curIndex(){var y=window.scrollY,ts=tops(),b=0;for(var i=0;i<ts.length;i++)if(ts[i]<=y+12)b=i;return b;}function fire(dir){var ts=tops();var base=animating?target:curIndex();var next=Math.max(0,Math.min(ts.length-1,base+dir));if(next===base&&!animating)return;target=next;var from=window.scrollY,to=ts[target];if(Math.abs(to-from)<1){animating=false;return;}animating=true;var id=++animId,t0=performance.now(),dur=620;(function step(n){if(id!==animId)return;var p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,3);window.scrollTo(0,from+(to-from)*e);if(p<1)requestAnimationFrame(step);else animating=false;})(t0);}window.addEventListener("wheel",function(e){if(contactOpen())return;e.preventDefault();var n=performance.now();if(n-lastT>90){accum=0;consumed=false;}lastT=n;accum+=e.deltaY;if(!consumed&&Math.abs(accum)>50){consumed=true;fire(accum>0?1:-1);}},{passive:false});window.addEventListener("keydown",function(e){if(contactOpen())return;if(e.key==="ArrowDown"||e.key==="PageDown"||(e.key===" "&&!e.shiftKey)){e.preventDefault();fire(1);}else if(e.key==="ArrowUp"||e.key==="PageUp"||(e.key===" "&&e.shiftKey)){e.preventDefault();fire(-1);}},{passive:false});})();</script><script>(function(){var s4=document.getElementById("s4");if(!s4)return;function cnt(){s4.querySelectorAll(".spec-num [data-count]").forEach(function(el){var t=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=performance.now(),dur=1400;(function step(n){var p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=(t*e).toFixed(dec);if(p<1)requestAnimationFrame(step);})(performance.now());});}new IntersectionObserver(function(es,io){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=0.35){s4.classList.add("in-view");io.disconnect();}});},{threshold:[0.35]}).observe(s4);var sp=s4.querySelector(".specs");if(sp){new IntersectionObserver(function(es,io){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=0.4){cnt();io.disconnect();}});},{threshold:[0.4]}).observe(sp);}})();</script>\n</body>', 1)
 
 # 5. availability claim: 99.99
 html = html.replace('99.999', '99.99')
@@ -226,6 +226,7 @@ nav.cells a.get:hover{color:#fff;text-decoration-color:#fff;background:transpare
 .g-right{display:flex;flex-direction:column;min-height:0;}
 .g-right .g-figscene{flex:1;min-height:0;}
 .g-right .spec{padding:clamp(16px,2.6vh,30px) clamp(14px,1.5vw,26px);}
+.spec{text-align:center;}
 .g-right .spec-num{font-size:clamp(22px,2.1vw,34px);}
 .g-figscene{position:relative;display:flex;align-items:center;justify-content:center;padding:clamp(18px,3.5vh,36px) 0;}
 .g-figscene svg{height:100%;width:auto;display:block;transform:translateX(7%);}
@@ -254,6 +255,8 @@ nav.cells a.get:hover{color:#fff;text-decoration-color:#fff;background:transpare
 .spec-num b{font-weight:inherit;}
 /* right panels echo the left: display-scale numbers in the headline serif, labels stay Barlow */
 .tp-val,.tp-x b,.wx-gbps,.lat-big,.spec-num{font-family:"Source Serif 4",Georgia,serif;font-weight:500;}
+.tp-name,.wx-lab,.lat-tag{font-family:var(--grot);font-weight:600;text-transform:uppercase;letter-spacing:.07em;}
+.tp-name{font-size:12px;}
 .p strong{font-weight:600;color:#fff;}
 
 /* copy panels carrying photos, words overlaid */
